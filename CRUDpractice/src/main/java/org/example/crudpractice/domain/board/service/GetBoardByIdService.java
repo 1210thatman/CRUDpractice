@@ -6,16 +6,15 @@ import org.example.crudpractice.domain.board.persistence.dto.response.BoardRespo
 import org.example.crudpractice.domain.board.presentation.Board;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class GetBoardService {
-    final private BoardRepository boardRepository;
+public class GetBoardByIdService {
+    private final BoardRepository boardRepository;
 
-    public List<BoardResponse> getAllBoards() {
-        List<Board> boards = boardRepository.findAll();
-        return boards.stream().map(BoardResponse::new).toList();
+    public BoardResponse getBoardById(Long id){
+        Optional<Board> boardOptional = boardRepository.findById(id);
+        return boardOptional.map(BoardResponse::new).orElseThrow(() -> new RuntimeException("Board not found"));
     }
 }
