@@ -6,4 +6,5 @@ import lombok.Getter;
 public class BoardCreateRequest {
     private String title;
     private String adminName;
+    private int  amountOfPost;
 }
