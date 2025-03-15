@@ -31,11 +31,11 @@ public class BoardController {
     }
 
     @GetMapping("/{id}")
-    public BoardResponse getBoardById(@PathVariable("id") Long id) throws IllegalAccessException{
+    public BoardResponse getBoardById(@PathVariable Long id) throws IllegalAccessException{
         return  getBoardByIdService.getBoardById(id);
     }
 
-    @GetMapping("/{adminName}")
+    @GetMapping("/admin-name/{adminName}")
     public List<BoardResponse> getBoardsByAdminName(@PathVariable String adminName) throws IllegalAccessException{
         return getBoardsByAdminNameService.getBoardsByAdminName(adminName);
     }
