@@ -6,5 +6,5 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class BoardUpdateRequest {
-    private String boardName;
+    private String title;
 }
