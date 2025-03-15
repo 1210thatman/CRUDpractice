@@ -5,6 +5,8 @@ import org.example.crudpractice.domain.board.persistence.dto.request.BoardCreate
 import org.example.crudpractice.domain.board.persistence.dto.response.BoardResponse;
 import org.example.crudpractice.domain.board.service.CreateBoardService;
 import org.example.crudpractice.domain.board.service.GetAllBoardsService;
+import org.example.crudpractice.domain.board.service.GetBoardByIdService;
+import org.example.crudpractice.domain.board.service.GetBoardsByAdminNameService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +17,8 @@ import java.util.List;
 public class BoardController {
     private final CreateBoardService createBoardService;
     private final GetAllBoardsService getBoardService;
+    private final GetBoardByIdService getBoardByIdService;
+    private final GetBoardsByAdminNameService getBoardsByAdminNameService;
 
     @PostMapping("/create")
     public void createBoard(@RequestBody BoardCreateRequest request) {
@@ -24,5 +28,15 @@ public class BoardController {
     @GetMapping
     public List<BoardResponse> getAllBoards() {
         return getBoardService.getAllBoards();
+    }
+
+    @GetMapping("/{id}")
+    public BoardResponse getBoardById(@PathVariable("id") Long id) throws IllegalAccessException{
+        return  getBoardByIdService.getBoardById(id);
+    }
+
+    @GetMapping("/{adminName}")
+    public List<BoardResponse> getBoardsByAdminName(@PathVariable String adminName) throws IllegalAccessException{
+        return getBoardsByAdminNameService.getBoardsByAdminName(adminName);
     }
 }
