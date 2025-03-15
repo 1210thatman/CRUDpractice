@@ -18,6 +18,7 @@ public class BoardController {
     private final GetBoardByIdService getBoardByIdService;
     private final GetBoardsByAdminNameService getBoardsByAdminNameService;
     private final UpdateBoardService updateBoardService;
+    private final DeleteBoardById deleteBoardById;
 
     @PostMapping("/create")
     public void createBoard(@RequestBody BoardCreateRequest request) {
@@ -42,5 +43,10 @@ public class BoardController {
     @PutMapping("/{id}")
     public void updateBoard(@PathVariable Long id, @RequestBody BoardUpdateRequest request) {
         updateBoardService.updateBoardById(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBoardById(@PathVariable Long id) throws IllegalAccessException{
+        deleteBoardById.deleteBoardById(id);
     }
 }
