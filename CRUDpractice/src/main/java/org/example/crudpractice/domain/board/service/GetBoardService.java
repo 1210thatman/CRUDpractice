@@ -15,6 +15,6 @@ public class GetBoardService {
 
     public List<BoardResponse> getAllBoards() {
         List<Board> boards = boardRepository.findAll();
-        return boards.stream().map(BoardResponse::boardResponse).toList();
+        return boards.stream().map(BoardResponse::new).toList();
     }
 }

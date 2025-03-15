@@ -12,12 +12,10 @@ public class BoardResponse {
     private int amountOfPost;
     private String adminName;
 
-    public static BoardResponse boardResponse(Board board) {
-        return BoardResponse.builder()
-                .id(board.getId())
-                .title(board.getTitle())
-                .amountOfPost(board.getAmountOfPost())
-                .adminName(board.getAdminName())
-                .build();
+    public BoardResponse(Board board) {
+        this.id = board.getId();
+        this.title = board.getTitle();
+        this.amountOfPost = board.getAmountOfPost();
+        this.adminName = board.getAdminName();
     }
 }
