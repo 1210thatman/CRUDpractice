@@ -1,4 +1,4 @@
-package org.example.crudpractice.domain.comment;
+package org.example.crudpractice.domain.post.presentation;
 
 import jakarta.persistence.*;
 import lombok.Getter;
