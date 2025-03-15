@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class DeleteBoardById {
     private final BoardRepository boardRepository;
+
     public void deleteBoardById(Long id) {
         boardRepository.deleteById(id);
     }

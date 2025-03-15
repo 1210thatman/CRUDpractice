@@ -6,7 +6,7 @@ import org.example.crudpractice.domain.board.presentation.Board;
 
 @Entity
 @Getter
-public class Comment {
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
