@@ -31,12 +31,12 @@ public class BoardController {
     }
 
     @GetMapping("/{id}")
-    public BoardResponse getBoardById(@PathVariable Long id) throws IllegalAccessException{
+    public BoardResponse getBoardById(@PathVariable Long id){
         return  getBoardByIdService.getBoardById(id);
     }
 
-    @GetMapping("/admin-name/{adminName}")
-    public List<BoardResponse> getBoardsByAdminName(@PathVariable String adminName) throws IllegalAccessException{
+    @GetMapping("/admin-name")
+    public List<BoardResponse> getBoardsByAdminName(@RequestParam("admin-name") String adminName) {
         return getBoardsByAdminNameService.getBoardsByAdminName(adminName);
     }
 
@@ -46,7 +46,7 @@ public class BoardController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteBoardById(@PathVariable Long id) throws IllegalAccessException{
+    public void deleteBoardById(@PathVariable Long id){
         deleteBoardById.deleteBoardById(id);
     }
 }
