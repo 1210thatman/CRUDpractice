@@ -16,7 +16,7 @@ public class GetBoardsByAdminNameService {
     public List<BoardResponse> getBoardsByAdminName(String adminName) {
         List<Board> boards = boardRepository.findByAdminName(adminName);
         if (boards.isEmpty()) {
-            throw new RuntimeException("Admin name not found: " + adminName);
+            throw new RuntimeException("Admin name not found");
         }
         return boards.stream().map(BoardResponse::new).toList();
     }

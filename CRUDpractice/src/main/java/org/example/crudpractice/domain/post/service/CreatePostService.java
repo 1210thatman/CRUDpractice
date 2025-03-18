@@ -14,8 +14,8 @@ public class CreatePostService {
     final private PostRepository postRepository;
     private final BoardRepository boardRepository;
 
-    public void createPost(PostCreateRequest request) {
-        Board board = boardRepository.findById(request.getBoardId()).orElseThrow(() -> new RuntimeException("Board not found"));
+    public void createPost(PostCreateRequest request, Long  boardId) {
+        Board board = boardRepository.findById(boardId).orElseThrow(() -> new RuntimeException("Board not found"));
         Post post = Post.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
