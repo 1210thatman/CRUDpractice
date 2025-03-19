@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 public class CreateBoardService {
     final private BoardRepository boardRepository;
 
-    public void createBoard(BoardCreateRequest request) {
-        boardRepository.save(
+    public Long createBoard(BoardCreateRequest request) {
+         return boardRepository.save(
                 Board.builder()
                         .title(request.getTitle())
                         .adminName(request.getAdminName())
                         .amountOfPost(0)
                         .build()
-        );
+        ).getId();
     }
 }

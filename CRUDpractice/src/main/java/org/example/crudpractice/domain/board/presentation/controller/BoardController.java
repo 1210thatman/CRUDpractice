@@ -5,6 +5,8 @@ import org.example.crudpractice.domain.board.persistence.dto.request.BoardCreate
 import org.example.crudpractice.domain.board.persistence.dto.request.BoardUpdateRequest;
 import org.example.crudpractice.domain.board.persistence.dto.response.BoardResponse;
 import org.example.crudpractice.domain.board.service.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +23,9 @@ public class BoardController {
     private final DeleteBoardById deleteBoardById;
 
     @PostMapping("/create")
-    public void createBoard(@RequestBody BoardCreateRequest request) {
-        createBoardService.createBoard(request);
+    public ResponseEntity<Long> createBoard(@RequestBody BoardCreateRequest request) {
+        Long boardId = createBoardService.createBoard(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(boardId);
     }
 
     @GetMapping

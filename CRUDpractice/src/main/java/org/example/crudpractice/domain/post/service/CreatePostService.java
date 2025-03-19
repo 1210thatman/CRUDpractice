@@ -14,8 +14,9 @@ public class CreatePostService {
     final private PostRepository postRepository;
     private final BoardRepository boardRepository;
 
-    public void createPost(PostCreateRequest request, Long  boardId) {
+    public Long createPost(PostCreateRequest request, Long  boardId) {
         Board board = boardRepository.findById(boardId).orElseThrow(() -> new RuntimeException("Board not found"));
+
         Post post = Post.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
@@ -23,6 +24,8 @@ public class CreatePostService {
                 .board(board)
                 .build();
 
-        postRepository.save(post);
+        board.increasePostCount();
+
+        return postRepository.save(post).getId();
     }
 }

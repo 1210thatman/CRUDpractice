@@ -32,4 +32,7 @@ public class Board {
     public void update(String title){
         this.title = title;
     }
+    public void increasePostCount(){
+        this.amountOfPost += 1;
+    }
 }
