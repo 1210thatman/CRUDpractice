@@ -5,6 +5,6 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CrudpracticeException {
+public class CrudpracticeException extends RuntimeException {
     private final ErrorCode errorCode;
 }
