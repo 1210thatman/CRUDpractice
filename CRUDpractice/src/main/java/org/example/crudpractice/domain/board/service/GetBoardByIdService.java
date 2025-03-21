@@ -13,7 +13,7 @@ import java.util.Optional;
 public class GetBoardByIdService {
     private final BoardRepository boardRepository;
 
-    public BoardResponse getBoardById(Long id){
+    public BoardResponse getBoardById(Long id) {
         Optional<Board> boardOptional = boardRepository.findById(id);
         return boardOptional.map(BoardResponse::new).orElseThrow(() -> new RuntimeException("Board not found"));
     }

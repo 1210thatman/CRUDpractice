@@ -28,4 +28,9 @@ public class Post {
         this.userName = userName;
         this.board = board;
     }
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
 }

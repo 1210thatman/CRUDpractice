@@ -13,9 +13,9 @@ public class UpdateBoardService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public void updateBoardById(Long id,  BoardUpdateRequest boardUpdateRequest){
+    public Long updateBoardById(Long id, BoardUpdateRequest boardUpdateRequest) {
         Board board = boardRepository.findById(id).orElseThrow(() -> new RuntimeException("Board not found"));
         board.update(boardUpdateRequest.getTitle());
-        boardRepository.save(board);
+        return boardRepository.save(board).getId();
     }
 }

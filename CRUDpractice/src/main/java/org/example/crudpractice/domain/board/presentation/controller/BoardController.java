@@ -23,9 +23,8 @@ public class BoardController {
     private final DeleteBoardById deleteBoardById;
 
     @PostMapping("/create")
-    public ResponseEntity<Long> createBoard(@RequestBody BoardCreateRequest request) {
-        Long boardId = createBoardService.createBoard(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(boardId);
+    public Long createBoard(@RequestBody BoardCreateRequest request) {
+        return createBoardService.createBoard(request);
     }
 
     @GetMapping
@@ -34,8 +33,8 @@ public class BoardController {
     }
 
     @GetMapping("/{id}")
-    public BoardResponse getBoardById(@PathVariable Long id){
-        return  getBoardByIdService.getBoardById(id);
+    public BoardResponse getBoardById(@PathVariable Long id) {
+        return getBoardByIdService.getBoardById(id);
     }
 
     @GetMapping("/admin-name")
@@ -49,7 +48,7 @@ public class BoardController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteBoardById(@PathVariable Long id){
+    public void deleteBoardById(@PathVariable Long id) {
         deleteBoardById.deleteBoardById(id);
     }
 }

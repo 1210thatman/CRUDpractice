@@ -16,7 +16,14 @@ public class UpdatePostService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public void updatePostById(Long boardId, PostUpdateRequest postUpdateRequest) {
-        //Board board = boardRepository.findById(boardId);
+    public Long updatePostById(Long id, Long boardId, PostUpdateRequest postUpdateRequest) {
+        Post post = postRepository.findById(id).orElseThrow(() -> new RuntimeException("Post not found"));
+
+        if (!post.getBoard().getId().equals(boardId)) {
+            throw new IllegalArgumentException("Post does not belong to the given board");
+        }
+
+        post.update(postUpdateRequest.getTitle(), postUpdateRequest.getContent());
+        return post.getId();
     }
 }
