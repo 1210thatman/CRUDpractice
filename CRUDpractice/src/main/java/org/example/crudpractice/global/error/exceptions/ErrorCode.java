@@ -11,7 +11,8 @@ public enum ErrorCode {
     BAD_REQUEST(400, "Bad Request"),
     INTERNAL_SERVER_ERROR(500, "internal server error"),
     BOARD_NOT_EXIST(404, "board not exist"),
-    ADMIN_NAME_NOT_EXIST(404, "admin name not exist");
+    ADMIN_NAME_NOT_EXIST(404, "admin name not exist"),
+    POST_NOT_EXIST(404, "post not found");
 
     private int statusCode;
     private String message;
