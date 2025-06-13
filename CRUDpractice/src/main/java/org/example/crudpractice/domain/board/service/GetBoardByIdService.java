@@ -1,6 +1,7 @@
 package org.example.crudpractice.domain.board.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.crudpractice.domain.board.exception.BoardNotFoundException;
 import org.example.crudpractice.domain.board.persistence.BoardRepository;
 import org.example.crudpractice.domain.board.persistence.dto.response.BoardResponse;
 import org.example.crudpractice.domain.board.presentation.Board;
@@ -15,6 +16,6 @@ public class GetBoardByIdService {
 
     public BoardResponse getBoardById(Long id) {
         Optional<Board> boardOptional = boardRepository.findById(id);
-        return boardOptional.map(BoardResponse::new).orElseThrow(() -> new RuntimeException("Board not found"));
+        return boardOptional.map(BoardResponse::new).orElseThrow(() -> BoardNotFoundException.EXCEPTION);
     }
 }

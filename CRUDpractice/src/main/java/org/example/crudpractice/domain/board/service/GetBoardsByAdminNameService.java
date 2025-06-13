@@ -1,6 +1,7 @@
 package org.example.crudpractice.domain.board.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.crudpractice.domain.board.exception.AdminNameNotFoundException;
 import org.example.crudpractice.domain.board.persistence.BoardRepository;
 import org.example.crudpractice.domain.board.persistence.dto.response.BoardResponse;
 import org.example.crudpractice.domain.board.presentation.Board;
@@ -16,7 +17,7 @@ public class GetBoardsByAdminNameService {
     public List<BoardResponse> getBoardsByAdminName(String adminName) {
         List<Board> boards = boardRepository.findByAdminName(adminName);
         if (boards.isEmpty()) {
-            throw new RuntimeException("Admin name not found");
+            throw AdminNameNotFoundException.EXCEPTION;
         }
         return boards.stream().map(BoardResponse::new).toList();
     }

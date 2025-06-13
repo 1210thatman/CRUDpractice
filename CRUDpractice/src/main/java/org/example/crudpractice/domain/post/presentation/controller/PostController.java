@@ -1,18 +1,10 @@
 package org.example.crudpractice.domain.post.presentation.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
-import org.example.crudpractice.domain.board.presentation.Board;
-import org.example.crudpractice.domain.board.service.UpdateBoardService;
 import org.example.crudpractice.domain.post.persistence.dto.request.PostCreateRequest;
 import org.example.crudpractice.domain.post.persistence.dto.request.PostUpdateRequest;
 import org.example.crudpractice.domain.post.persistence.dto.response.PostResponse;
-import org.example.crudpractice.domain.post.service.CreatePostService;
-import org.example.crudpractice.domain.post.service.DeletePostService;
-import org.example.crudpractice.domain.post.service.GetPostService;
-import org.example.crudpractice.domain.post.service.UpdatePostService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.example.crudpractice.domain.post.service.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,11 +14,12 @@ import java.util.List;
 public class PostController {
     private final CreatePostService createPostService;
     private final UpdatePostService updatePostService;
-    private final GetPostService getPostService;
+    private final GetAllPostService getAllPostService;
     private final DeletePostService deletePostService;
+    private final GetPostByIdService getPostByIdService;
 
-    @PostMapping("/{boardId}/post") //create?board-id=1
-    public Long createPost(@RequestParam("board-id") Long boardId, @RequestBody PostCreateRequest request) {
+    @PostMapping("{board-id}/post") // http://localhost:8080/post?board-id=1
+    public Long createPost(@PathVariable("board-id") Long boardId, @RequestBody PostCreateRequest request) {
         return createPostService.createPost(request, boardId);
     }
 
@@ -37,11 +30,16 @@ public class PostController {
 
     @GetMapping("{boardId}/posts")
     public List<PostResponse> getPostsByBoardId(@PathVariable Long boardId) {
-        return getPostService.getPostsByBoardId(boardId);
+        return getAllPostService.getPostsByBoardId(boardId);
+    }
+
+    @GetMapping("posts/{postId}")
+    public PostResponse getPostById(@PathVariable("postId") Long postId) {
+        return getPostByIdService.getPostById(postId);
     }
 
     @DeleteMapping("posts")
-    public void deletePostsByBoardId(@RequestParam("board-id")Long boardId) {
-        deletePostService.deletePostService(boardId);
+    public void deletePostsByBoardId(@RequestParam("post-id")Long postId) {
+        deletePostService.deletePostService(postId);
     }
 }
