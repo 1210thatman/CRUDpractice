@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
 public class ExceptionFilter extends OncePerRequestFilter {
-    private final ObjectMapper objectMapper;//요청을 체계적으로 보내기
+    private final ObjectMapper objectMapper; //역직렬화 시켜줌 / JSON -> java객체
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException{
