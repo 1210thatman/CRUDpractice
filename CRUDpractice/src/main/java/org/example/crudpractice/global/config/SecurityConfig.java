@@ -13,7 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration //수동 Bean 등록, 직접 파일을 Bean으로 사용하라는 의미에서 달아준 것
+@Configuration //수동 Bean 등록
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
