@@ -7,6 +7,6 @@ public class PostNotFoundException extends CrudpracticeException {
     public static final CrudpracticeException EXCEPTION = new PostNotFoundException();
 
     public PostNotFoundException() {
-        super(ErrorCode.POST_NOT_EXIST);
+        super(ErrorCode.POST_NOT_FOUND);
     }
 }
